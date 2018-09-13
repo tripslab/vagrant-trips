@@ -20,5 +20,10 @@ a little difficult if you don't have a powerful machine.
 
 If you want to install everything natively, look in `./provisioners/diesel.sh`
 for step by step instructions to install and configure 
-[diesel](http://www.github.com/mrmechko/diesel-python) and [genesis](http://github.com/mrmechko/genesis)
-I recommend using a virtual environment for python.  I use [pyenv](http://github.com/pyenv/pyenv)
+[diesel](http://www.github.com/mrmechko/diesel-python) and [genesis](http://github.com/mrmechko/genesis).
+I recommend using a virtual environment for python.  I use [pyenv](http://github.com/pyenv/pyenv).
+
+genesis additionally depends on [spacy](http://spacy.io) which is really useful for quickly preparing free text
+for various types of NLP processing.
+
+
