@@ -11,6 +11,9 @@ pip install git+git://github.com/mrmechko/genesis
 
 git clone http://github.com/mrmechko/flaming-tyrion
 
-# set the paths for genesis.  Parser isn't installed
+# set the paths for genesis.  Parser isn't installed, so only use the remote one
 echo export tripsParserRemote=trips.ihmc.us/parser >> .bash_profile
+
+# this path should point to whatever directory you cloned flaming-tyrion to
+# in this case we clone it to the home directory for vagrant.
 echo export tripsXMLPath=/home/vagrant/flaming-tyrion >> .bash_profile
