@@ -13,7 +13,7 @@ python -m spacy download en
 
 git clone http://github.com/mrmechko/flaming-tyrion
 
-git clone http://github.com/wdbeaum/step
+git clone http://github.com/wdebeaum/step
 
 # set the paths for genesis.  Parser isn't installed, so only use the remote one
 echo export tripsParserRemote=trips.ihmc.us/parser >> .bash_profile
@@ -22,3 +22,11 @@ echo export tripsParserRemote=trips.ihmc.us/parser >> .bash_profile
 # in this case we clone it to the home directory for vagrant.
 echo export tripsXMLPath=/home/vagrant/flaming-tyrion >> .bash_profile
 echo export TRIPS_BASE_PATH=/home/vagrant/step >> .bash_profile
+
+
+# Install the jupyter notebook for easier exploration
+pip install jupyter
+
+mkdir -p /base/notebooks/
+
+

@@ -13,6 +13,12 @@ The virtual machine will set itself up, and when it is ready, you can `ssh` in a
 use the machine as you wish.  Any files in `./base` will be shared between the
 VM and your machine so you don't have to develop over `ssh`.
 
+The vagrant machine automatically starts a jupyter notebook server in the folder '/base/notebooks/'.
+You can access this server from [https://0.0.0.0:8888/tree](https://0.0.0.0:8888/tree) in your local browser.
+
+I will put a few sample notebooks in a subfolder demonstrating any functionality you might have questions about.
+If you are not using vagrant, follow the instructions for local install and copy the notebooks.
+
 **nb**: Vagrant machine takes at least 2 gigs of ram, which might make things
 a little difficult if you don't have a powerful machine.
 
