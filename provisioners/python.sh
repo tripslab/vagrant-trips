@@ -13,3 +13,9 @@ source .bash_profile
 # if you're using pyenv locally, don't set the global version
 pyenv install 3.5.6
 pyenv global 3.5.6
+
+# Install the jupyter notebook for easier exploration
+pip install jupyter
+
+mkdir -p /base/notebooks/
+

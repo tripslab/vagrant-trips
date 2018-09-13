@@ -1,3 +1,19 @@
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--jupyter-password', GetoptLong::OPTIONAL_ARGUMENT ]
+)
+
+jpword=nil
+
+opts.each do |opt, arg|
+  case opt
+    when '--jupyter-password'
+      jpword=arg
+  end
+end
+  
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -69,8 +85,23 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  unless jpword.nil?
+    config.vm.provision "shell" do |s|
+      s.privileged=false
+      s.path="provisioners/test.sh"
+      s.args="#{jpword}"
+    end
+  end
   config.vm.provision "shell", path: "provisioners/base.sh"
   config.vm.provision "shell", path: "provisioners/python.sh", privileged: false
+  unless jpword.nil?
+    config.vm.provision "shell" do |s|
+      s.privileged=false
+      s.path="provisioners/jupyterpassword.sh"
+      s.args="#{jpword}"
+      s.run="always"
+    end
+  end
   config.vm.provision "shell", path: "provisioners/diesel.sh", privileged: false
   config.vm.provision "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
 end

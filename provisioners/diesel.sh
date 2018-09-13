@@ -24,9 +24,4 @@ echo export tripsXMLPath=/home/vagrant/flaming-tyrion >> .bash_profile
 echo export TRIPS_BASE_PATH=/home/vagrant/step >> .bash_profile
 
 
-# Install the jupyter notebook for easier exploration
-pip install jupyter
-
-mkdir -p /base/notebooks/
-
 
