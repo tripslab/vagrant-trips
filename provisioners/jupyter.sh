@@ -1,6 +1,7 @@
 #!/bin/bash
+cat /home/vagrant/.jupyter_mode
 
-if [ -f .jupyter_mode && "$(cat /vagrant/home/.jupyter_mode)" == "enabled" ]
+if [[ -f /home/vagrant/.jupyter_mode && "$(cat /home/vagrant/.jupyter_mode)" == "enabled" ]]
 then
 	cd /base/notebooks
 	jupyter notebook --ip=0.0.0.0

@@ -17,5 +17,7 @@ pyenv global 3.5.6
 # Install the jupyter notebook for easier exploration
 pip install jupyter
 
+jupyter notebook --generate-config
+
 mkdir -p /base/notebooks/
 

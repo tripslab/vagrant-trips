@@ -16,7 +16,7 @@ send -- "$password\r"
 
 expect "\[NotebookPasswordApp\] Wrote hashed password to*"
 
-log_file -noappend .jupyter_mode
+log_file -noappend /home/vagrant/.jupyter_mode
 send_log "enabled"
 
 

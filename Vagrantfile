@@ -86,8 +86,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   unless jpword.nil?
-    config.vm.provision "shell" do |s|
-      s.privileged=false
+    config.vm.provision "shell", privileged: false, run: "always" do |s|
       s.path="provisioners/test.sh"
       s.args="#{jpword}"
     end
@@ -95,11 +94,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "provisioners/base.sh"
   config.vm.provision "shell", path: "provisioners/python.sh", privileged: false
   unless jpword.nil?
-    config.vm.provision "shell" do |s|
-      s.privileged=false
+    config.vm.provision "shell", privileged: false, run: "always" do |s|
       s.path="provisioners/jupyterpassword.sh"
       s.args="#{jpword}"
-      s.run="always"
     end
   end
   config.vm.provision "shell", path: "provisioners/diesel.sh", privileged: false
