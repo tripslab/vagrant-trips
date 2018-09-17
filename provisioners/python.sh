@@ -19,5 +19,5 @@ pip install jupyter
 
 jupyter notebook --generate-config
 
-mkdir -p /home/vagrant/notebooks/
+mkdir -p /home/vagrant/shared/notebooks/
 

@@ -11,13 +11,13 @@ are installed and run `vagrant up`.  If you want to enable jupyter mode, you can
 run `vagrant --jupyter-password=[your password] up`.
 
 The virtual machine will set itself up, and when it is ready, you can `ssh` in and
-use the machine as you wish.  Any files in `./base` will be shared between the
-VM and your machine so you don't have to develop over `ssh`.o
+use the machine as you wish.  Any files in `./shared` will be shared between the
+VM and your machine so you don't have to develop over `ssh`.
 
 ## Jupyter
 
 If you define a `--jupyter-password`, the vagrant machine will automatically start a jupyter notebook server 
-in the folder '/base/notebooks/'.  You can access this server from [https://0.0.0.0:8888/tree](https://0.0.0.0:8888/tree) in your local browser.
+in the folder /home/vagrant/shared/notebooks/'.  You can access this server from [https://0.0.0.0:8888/tree](https://0.0.0.0:8888/tree) in your local browser.
 
 To disable jupyter, `vagrant ssh; echo disabled >> /home/vagrant/.jupyter_mode` or simply never specify a password.
 If you want to be able to use jupyter but don't want it to autostart, run `jupyter notebook password` inside the vm and then
