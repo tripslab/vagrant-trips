@@ -11,7 +11,7 @@ python -m spacy download en
 # download the flaming-tyrion repo which houses the ontology XML files
 # this repo is updated weekly
 
-git clone http://github.com/mrmechko/flaming-tyrion /home/vagrant/shared/flaming-tyrion
+git clone --depth=1 http://github.com/mrmechko/flaming-tyrion /home/vagrant/shared/flaming-tyrion
 
 git clone http://github.com/wdebeaum/step /home/vagrant/shared/step
 
