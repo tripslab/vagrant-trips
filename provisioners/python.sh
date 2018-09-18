@@ -21,3 +21,4 @@ jupyter notebook --generate-config
 
 mkdir -p /home/vagrant/shared/notebooks/
 
+echo "Python configuration success"
