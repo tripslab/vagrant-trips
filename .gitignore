@@ -147,5 +147,3 @@ pip-selfcheck.json
 # End of https://www.gitignore.io/api/python
 
 
-!./base/notebooks/samples/*
-./base/*
