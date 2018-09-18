@@ -14,6 +14,12 @@ The virtual machine will set itself up, and when it is ready, you can `ssh` in a
 use the machine as you wish.  Any files in `./shared` will be shared between the
 VM and your machine so you don't have to develop over `ssh`.
 
+**Note** if the `vagrant up` command fails for any reason, make sure to reset `./shared` to a clean state
+before trying again.  That means removing `./shared/flaming-tyrion` and `./shared/step`.  If you made changes
+to `step` and need to reprovision the machine, comment out the line in `./provisioners/diesel.sh` which clones
+the repo.  If this becomes a problem, I'll figure out a way to configure the machine without having to mess with
+`step`.
+
 ## Jupyter
 
 If you define a `--jupyter-password`, the vagrant machine will automatically start a jupyter notebook server 
