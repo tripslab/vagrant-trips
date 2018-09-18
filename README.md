@@ -8,7 +8,9 @@ library.
 If you want to run it in a virtual machine, all you have to do is
 ensure [vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org)
 are installed and run `vagrant up`.  If you want to enable jupyter mode, you can
-run `vagrant --jupyter-password=[your password] up`.
+run `vagrant up --provision-with jupyter`.  Use the password stored in `./jupyterpassword`.  
+To change the password, replace the contents of `./jupyterpassword` and run 
+`vagrant up --provision-with password.
 
 The virtual machine will set itself up, and when it is ready, you can `ssh` in and
 use the machine as you wish.  Any files in `./shared` will be shared between the
@@ -22,10 +24,9 @@ the repo.  If this becomes a problem, I'll figure out a way to configure the mac
 
 ## Jupyter
 
-If you define a `--jupyter-password`, the vagrant machine will automatically start a jupyter notebook server 
+`vagrant up --provision-with jupyter` will start the machine with a jupyter notebook server running
 in the folder /home/vagrant/shared/notebooks/'.  You can access this server from [https://0.0.0.0:8888/tree](https://0.0.0.0:8888/tree) in your local browser.
 
-To disable jupyter, `vagrant ssh; echo disabled >> /home/vagrant/.jupyter_mode` or simply never specify a password.
 If you want to be able to use jupyter but don't want it to autostart, run `jupyter notebook password` inside the vm and then
 run `jupyter notebook` in whichever subdirectory you want to put your notebooks.  Access the server in the same way.
 

@@ -1,18 +1,11 @@
 require 'getoptlong'
 
-opts = GetoptLong.new(
-  [ '--jupyter-password', GetoptLong::OPTIONAL_ARGUMENT ]
-)
-
 jpword=nil
 
-opts.each do |opt, arg|
-  case opt
-    when '--jupyter-password'
-      jpword=arg
-  end
+if File.file? "jupyterpassword"
+  jpword = File.read("jupyterpassword")
 end
-  
+
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -85,20 +78,18 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
+  config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
+  config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
   unless jpword.nil?
-    config.vm.provision "shell", privileged: false, run: "always" do |s|
-      s.path="provisioners/test.sh"
-      s.args="#{jpword}"
-    end
-  end
-  config.vm.provision "shell", path: "provisioners/base.sh"
-  config.vm.provision "shell", path: "provisioners/python.sh", privileged: false
-  unless jpword.nil?
-    config.vm.provision "shell", privileged: false, run: "always" do |s|
+    config.vm.provision "password", type: "shell", privileged: false, run: "always" do |s|
       s.path="provisioners/jupyterpassword.sh"
       s.args="#{jpword}"
     end
   end
-  config.vm.provision "shell", path: "provisioners/diesel.sh", privileged: false
-  config.vm.provision "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
+  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false
+  config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
+
+  # restore from a failed trips installation
+  config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 end
