@@ -77,7 +77,9 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
-  # SHELL
+  # SHELLo
+
+  config.vm.provision "clean", type: "shell", path: "provisioners/clean.sh", run: "never"
 
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
@@ -93,6 +95,6 @@ Vagrant.configure("2") do |config|
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 
-  config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: true, run: "never"
-  config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: true, run: "never"
+  config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
+  config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
 end

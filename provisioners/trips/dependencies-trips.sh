@@ -1,29 +1,34 @@
 # code dependencies
 
 # install java8
-apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-8-jdk
 
 # sbcl cvs ruby sqlite graphviz
-apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz
+sudo apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz unzip
 
 # data dependencies
 TRIPSDEP=/home/vagrant/tripsdep
 
+mkdir -p $TRIPSDEP
+
 
 DEPURL="http://github.com/mrmechko/vagrant-trips/releases/download/0.0.1/tripsDependencies.zip"
 
-curl -L $DEPURL > $TRIPSDEP/dependencies.zip
+if [ ! -f $TRIPSDEP/dependencies.zip ]; then
+	curl -L $DEPURL > $TRIPSDEP/dependencies.zip
+fi
 
 echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
 
 cd $TRIPSDEP
 unzip dependencies.zip
 
-cd dependencies
-chmod +x install.sh
+# symlink things to the right place
+
+cd tripsDependencies
+sudo chmod +x install.sh
 
 ./install.sh
-
 
 ## if we need glosstags, they should go in ...nltk_data/corpora/glosstags/
 #function getgloss {
