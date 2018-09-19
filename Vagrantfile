@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/bionic64"
   config.vm.define "diesel"
   config.vm.hostname = "diesel"
 
@@ -87,9 +87,12 @@ Vagrant.configure("2") do |config|
       s.args="#{jpword}"
     end
   end
-  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false
+  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
+
+  config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: true, run: "never"
+  config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: true, run: "never"
 end
