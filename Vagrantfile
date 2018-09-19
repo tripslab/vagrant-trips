@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
   unless jpword.nil?
-    config.vm.provision "password", type: "shell", privileged: false, run: "always" do |s|
+    config.vm.provision "password", type: "shell", privileged: false, run: "once" do |s|
       s.path="provisioners/jupyterpassword.sh"
       s.args="#{jpword}"
     end
