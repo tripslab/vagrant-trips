@@ -52,7 +52,9 @@ for various types of NLP processing.
 * `/home/vagrant/step/src/LexiconManager/Data/new` contains the original lisp files for the lexicon
 * `/home/vagrant/step/src/LexiconManager/Data/templates` contains the original lisp files for the templates
 
-## Coming soon (maybe)
+## TRIPS
 
-Additional provisioners to install the trips parser.  Depends on whether I want to spend the 10 hours it takes
-to configure trips manually.
+In order to install trips through Vagrant, once you've initially provisioned the vagrant machine, run:
+`vagrant up --provision-with trips-dependencies,trips-configure`.  If the `make` crashes you'll have to fix a symlink manually (free candy for anyone who can explain why).
+
+go to `cd $tripsDependencies/trips-dependencies` and delete and recreate each of the symlinks in each of the subfolders, as per the instructions in `install.sh`.  Then `cd /home/vagrant/shared/step/src && make clean && make && make install`.
