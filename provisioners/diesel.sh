@@ -3,17 +3,27 @@
 # your python environment using `pip install .`
 pip install git+git://github.com/mrmechko/diesel-python
 
+echo "diesel-python installed"
+
 # genesis automatically installs spacy and a language model among other things
 pip install git+git://github.com/mrmechko/genesis
 
+echo "genesis installed"
+
 python -m spacy download en
+
+echo "spacy installed"
 
 # download the flaming-tyrion repo which houses the ontology XML files
 # this repo is updated weekly
 
-git clone --depth=1 http://github.com/mrmechko/flaming-tyrion /home/vagrant/shared/flaming-tyrion
+git -C /home/vagrant/shared/flaming-tyrion pull || git clone --depth=1 http://github.com/mrmechko/flaming-tyrion /home/vagrant/shared/flaming-tyrion
 
-git clone http://github.com/wdebeaum/step /home/vagrant/shared/step
+echo "flaming-tyrion pulled"
+
+git -C /home/vagrant/shared/step pull || git clone http://github.com/wdebeaum/step /home/vagrant/shared/step
+
+echo "step pulled"
 
 # set the paths for genesis.  Parser isn't installed, so only use the remote one
 echo export tripsParserRemote=trips.ihmc.us/parser >> .bash_profile
