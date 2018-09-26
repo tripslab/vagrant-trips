@@ -1,9 +1,7 @@
-require 'getoptlong'
+require 'json'
 
-jpword=nil
-
-if File.file? "jupyterpassword"
-  jpword = File.read("jupyterpassword")
+if File.file? "config.json"
+  params = JSON.parse(File.read("config.json"))
 end
 
 
@@ -34,7 +32,11 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  config.vm.network "forwarded_port", guest: 8888, host: 8888
+  j_port = params["jupyter_port"] || 1337
+  t_port = params["trips_port"] || 6200
+
+  config.vm.network "forwarded_port", guest: 8888, host: j_port
+  config.vm.network "forwarded_port", guest: 6200, host: t_port
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -63,7 +65,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
-  
+
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
   end
@@ -83,10 +85,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
-  unless jpword.nil?
+  unless params["jupyter_password"].nil?
     config.vm.provision "password", type: "shell", privileged: false, run: "once" do |s|
       s.path="provisioners/jupyterpassword.sh"
-      s.args="#{jpword}"
+      s.args="#{params["jupyter_password"]}"
     end
   end
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
@@ -95,6 +97,18 @@ Vagrant.configure("2") do |config|
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 
+  # install trips if that's the default
+  if params["install_trips"] == true
+    config.vm.provision "trips-dependencies-auto", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "once"
+    config.vm.provision "trips-configure-auto", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "once"
+  end
+
+  # leave provisioners to install trips otherwise
   config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
   config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
+
+  if params["start_by_default"] == "jupyter"
+    config.vm.provision "jupyter-default", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
+  end
+
 end
