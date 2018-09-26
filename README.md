@@ -7,10 +7,7 @@ library.
 
 If you want to run it in a virtual machine, all you have to do is
 ensure [vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org)
-are installed and run `vagrant up`.  If you want to enable jupyter mode, you can
-run `vagrant up --provision-with jupyter`.  Use the password stored in `./jupyterpassword`.  
-To change the password, replace the contents of `./jupyterpassword` and run 
-`vagrant up --provision-with password.
+are installed and run `vagrant up`.
 
 The virtual machine will set itself up, and when it is ready, you can `ssh` in and
 use the machine as you wish.  Any files in `./shared` will be shared between the
