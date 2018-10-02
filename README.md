@@ -7,7 +7,8 @@ library.
 
 If you want to run it in a virtual machine, all you have to do is
 ensure [vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org)
-are installed and run `vagrant up`.
+are installed and run `vagrant up`.  There are a variety of configuration options in `config.json`.
+Most importantly, if you don't want to set up TRIPS completely, set `install_trips: false`.
 
 The virtual machine will set itself up, and when it is ready, you can `ssh` in and
 use the machine as you wish.  Any files in `./shared` will be shared between the
