@@ -52,7 +52,4 @@ for various types of NLP processing.
 
 ## TRIPS
 
-In order to install trips through Vagrant, once you've initially provisioned the vagrant machine, run:
-`vagrant up --provision-with trips-dependencies,trips-configure`.  If the `make` crashes you'll have to fix a symlink manually (free candy for anyone who can explain why).
-
-go to `cd $tripsDependencies/trips-dependencies` and delete and recreate each of the symlinks in each of the subfolders, as per the instructions in `install.sh`.  Then `cd /home/vagrant/shared/step/src && make clean && make && make install`.
+TRIPS is now automagically installed.  Disable the full installation by setting `install_trips: false` in `config.json`
