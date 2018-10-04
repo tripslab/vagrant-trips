@@ -1,16 +1,17 @@
 # install diesel and genesis via pip
 # if you want to modify the code, clone the repos and install them into 
 # your python environment using `pip install .`
-pip install git+git://github.com/mrmechko/diesel-python
+
+pip install --upgrade git+git://github.com/mrmechko/diesel-python
 
 echo "diesel-python installed"
 
 # genesis automatically installs spacy and a language model among other things
-pip install git+git://github.com/mrmechko/genesis
+pip install --upgrade git+git://github.com/mrmechko/genesis
 
 echo "genesis installed"
 
-python -m spacy download en
+python -m spacy download en_core_web_lg
 
 echo "spacy installed"
 
@@ -21,15 +22,42 @@ git -C /home/vagrant/shared/flaming-tyrion pull || git clone --depth=1 http://gi
 
 echo "flaming-tyrion pulled"
 
-git -C /home/vagrant/shared/step pull || git clone http://github.com/wdebeaum/step /home/vagrant/shared/step
+# if step exists we gonna have issues...
+if [[ ! -d /home/vagrant/shared/step ]];
+then
+  	git clone http://github.com/wdebeaum/step /home/vagrant/shared/step;
+else
+	pushd /home/vagrant/shared/step
+	rm src
+	mv TRIPS src
+	git pull
+	mv src TRIPS
+	ln -s TRIPS src
+	echo "TRIPS was updated.  Make sure to recompile before you use it again"
+fi
 
 echo "step pulled"
 
 # set the paths for genesis.  Parser isn't installed, so only use the remote one
-echo export tripsParserRemote=trips.ihmc.us/parser >> .bash_profile
+exporttrips="export tripsParserRemote=trips.ihmc.us/parser"
 
 # this path should point to whatever directory you cloned flaming-tyrion to
 # in this case we clone it to the home directory for vagrant.
-echo export tripsXMLPath=/home/vagrant/shared/flaming-tyrion >> .bash_profile
-echo export TRIPS_BASE_PATH=/home/vagrant/shared/step >> .bash_profile
+exporttyrion="export tripsXMLPath=/home/vagrant/shared/flaming-tyrion"
+exportstep="export TRIPS_BASE_PATH=/home/vagrant/shared/step"
+exportspacy="export SPACY_MODEL=en_core_web_lg"
+
+check() {
+	if grep -Fxq $1 ~/.bash_profile
+	then
+		echo "adding to ~/.bash_profile: $1"
+		echo $exporttrips >> ~/.bash_profile
+	else:
+		echo "already in ~/.bash_profile: $1"
+	fi
+}
+
+check $exporttyrion
+check $exportstep
+check $exportspacy
 
