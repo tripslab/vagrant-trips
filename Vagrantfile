@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
-  config.vm.define "diesel"
-  config.vm.hostname = "diesel"
+  config.vm.define params["name"] || "diesel"
+  config.vm.hostname = params["name"] || "diesel"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -91,6 +91,9 @@ Vagrant.configure("2") do |config|
       s.args="#{params["jupyter_password"]}"
     end
   end
+
+  # install sbcl from binary instead of apt-get
+  config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
