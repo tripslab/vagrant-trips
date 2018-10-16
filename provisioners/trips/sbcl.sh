@@ -12,19 +12,21 @@ then
 	sudo ./install.sh
 	#SBCL_HOME=${LISPS_DIR}/sbcl/lib/sbcl exec ${LISPS_DIR}/sbcl/bin/sbcl "\$@"
 	popd
-	sudo apt-get install libczmq-dev -y
-
-	git clone https://github.com/fredokun/cl-jupyter
-	cd cl-jupyter
-
-	python ./install-cl-jupyter.py
-	sbcl --load ./cl-jupyter.lisp
-	cd
 else
-	apt-get install sbcl
+	sudo apt-get install -y sbcl
 fi
 
 curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp --eval "(quicklisp-quickstart:install)" --quit
 
 cp ~/shared/dotfiles/sbclrc ~/.sbclrc
+
+sudo apt-get install libczmq-dev -y
+
+git clone https://github.com/fredokun/cl-jupyter
+cd cl-jupyter
+
+python ./install-cl-jupyter.py
+sbcl --load ./cl-jupyter.lisp
+cd
+
