@@ -89,17 +89,18 @@ Vagrant.configure("2") do |config|
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
-  config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 
   # install trips if that's the default
   if params["install_trips"] == true
+    config.vm.provision "sbcl-auto", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
     config.vm.provision "trips-dependencies-auto", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "once"
     config.vm.provision "trips-configure-auto", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "once"
   end
 
   # leave provisioners to install trips otherwise
+  config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
   config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
 
