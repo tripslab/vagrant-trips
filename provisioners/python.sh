@@ -18,6 +18,6 @@ pip install jupyter
 jupyter notebook --generate-config
 
 mkdir -p /home/vagrant/shared/notebooks/
-cp -r ~/shared/dotfiles/.jupyter ~/.jupyter
+cp -r ~/shared/dotfiles/jupyter ~/.jupyter
 
 echo "Python configuration success"
