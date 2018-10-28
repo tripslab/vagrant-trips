@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ -n $1 ]] && [[ "$1" = "source" ]]; 
 then
 	export LISPS_DIR=${HOME}/lisps

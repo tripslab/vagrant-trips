@@ -1,3 +1,4 @@
+#!/bin/bash
 rm -rf /home/vagrant/shared/step
 rm -rf /home/vagrant/shared/flaming-tyrion
 

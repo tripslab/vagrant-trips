@@ -1,4 +1,5 @@
-source ~/.bash_profile.local
+#!/bin/bash
+
 # install diesel and genesis via pip
 # if you want to modify the code, clone the repos and install them into 
 # your python environment using `pip install .`

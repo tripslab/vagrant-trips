@@ -1,3 +1,4 @@
+#!/bin/bash
 # code dependencies
 
 # install java8

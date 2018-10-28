@@ -85,13 +85,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
-  unless params["jupyter_password"].nil?
-    config.vm.provision "password", type: "shell", privileged: false, run: "once" do |s|
-      s.path="provisioners/jupyterpassword.sh"
-      s.args="#{params["jupyter_password"]}"
-    end
-  end
-
   # install sbcl from binary instead of apt-get
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"

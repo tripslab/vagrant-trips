@@ -1,4 +1,4 @@
-export path=/home/vagrant/.pyenv/bin:$path
+export PATH=/home/vagrant/.pyenv/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -9,3 +9,5 @@ export tripsParserRemote=trips.ihmc.us/parser
 export tripsXMLPath=/home/vagrant/shared/flaming-tyrion
 export TRIPS_BASE_PATH=/home/vagrant/shared/step
 export SPACY_MODEL=en_core_web_lg
+
+. $HOME/.bashrc
