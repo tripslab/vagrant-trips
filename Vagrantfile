@@ -90,13 +90,13 @@ Vagrant.configure("2") do |config|
       s.path="provisioners/jupyterpassword.sh"
       s.args="#{params["jupyter_password"]}"
     end
-    config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   end
 
   # install sbcl from binary instead of apt-get
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
+  config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 

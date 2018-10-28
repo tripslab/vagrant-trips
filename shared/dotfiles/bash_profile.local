@@ -1,0 +1,11 @@
+export path=/home/vagrant/.pyenv/bin:$path
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export tripsParserRemote=trips.ihmc.us/parser
+
+# this path should point to whatever directory you cloned flaming-tyrion to
+# in this case we clone it to the home directory for vagrant.
+export tripsXMLPath=/home/vagrant/shared/flaming-tyrion
+export TRIPS_BASE_PATH=/home/vagrant/shared/step
+export SPACY_MODEL=en_core_web_lg
