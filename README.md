@@ -22,6 +22,8 @@ the repo.  If this becomes a problem, I'll figure out a way to configure the mac
 
 ## Jupyter
 
+# Jupyter is broken at the moment.  Ignore this.
+
 `vagrant up --provision-with jupyter` will start the machine with a jupyter notebook server running
 in the folder `/home/vagrant/shared/notebooks/`.  You can access this server from [https://0.0.0.0:1337/tree](https://0.0.0.0:1337/tree) in your local browser.  The default password is `password`.
 
