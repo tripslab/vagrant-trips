@@ -1,10 +1,8 @@
+#!/bin/bash
 # install pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
-# configure pyenv
-echo export PATH=\"/home/vagrant/.pyenv/bin:\$PATH\" >> .bash_profile
-echo eval \"\$\(pyenv init -\)\" >> .bash_profile
-echo eval \"\$\(pyenv virtualenv-init -\)\" >> .bash_profile
+cp ~/shared/dotfiles/bash_profile ~/.bash_profile
 
 # reload settings for pyenv
 source .bash_profile
@@ -20,5 +18,6 @@ pip install jupyter
 jupyter notebook --generate-config
 
 mkdir -p /home/vagrant/shared/notebooks/
+cp -r ~/shared/dotfiles/.jupyter ~/.jupyter
 
 echo "Python configuration success"

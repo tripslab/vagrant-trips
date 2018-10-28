@@ -1,3 +1,4 @@
+#!/bin/bash
 echo hi
 DEPPATH="$TRIPSDEP/tripsDependencies"
 

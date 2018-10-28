@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
-  config.vm.define "diesel"
-  config.vm.hostname = "diesel"
+  config.vm.define params["name"] || "diesel"
+  config.vm.hostname = params["name"] || "diesel"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -85,15 +85,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
-  unless params["jupyter_password"].nil?
-    config.vm.provision "password", type: "shell", privileged: false, run: "once" do |s|
-      s.path="provisioners/jupyterpassword.sh"
-      s.args="#{params["jupyter_password"]}"
-    end
-  end
+  # install sbcl from binary instead of apt-get
   config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
+  config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "once", args: params["sbcl"] || ""
   # restore from a failed trips installation
   config.vm.provision "restore", type: "shell", path: "provisioners/restore.sh", privileged: false, run: "never"
 
