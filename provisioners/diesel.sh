@@ -13,7 +13,7 @@ pip install --upgrade git+git://github.com/mrmechko/genesis
 
 echo "genesis installed"
 
-python -m spacy download en_core_web_lg
+python -m spacy download en
 
 echo "spacy installed"
 

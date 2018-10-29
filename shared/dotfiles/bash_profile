@@ -8,6 +8,6 @@ export tripsParserRemote=trips.ihmc.us/parser
 # in this case we clone it to the home directory for vagrant.
 export tripsXMLPath=/home/vagrant/shared/flaming-tyrion
 export TRIPS_BASE_PATH=/home/vagrant/shared/step
-export SPACY_MODEL=en_core_web_lg
+export SPACY_MODEL=en # change this to the name of the model you wish to use. larger models require more memory
 
 . $HOME/.bashrc
