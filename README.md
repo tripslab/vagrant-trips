@@ -22,12 +22,9 @@ the repo.  If this becomes a problem, I'll figure out a way to configure the mac
 
 ## Jupyter
 
-# Jupyter is broken at the moment.  Ignore this.
+If you start `jupyter` from inside the vagrant machine, the page will be available at `0.0.0.0:1337/tree` in your browser.  However, you might have to copy paste the link from inside the vagrant machine for authentication.  It is a little cumbersome.
 
-`vagrant up --provision-with jupyter` will start the machine with a jupyter notebook server running
-in the folder `/home/vagrant/shared/notebooks/`.  You can access this server from [https://0.0.0.0:1337/tree](https://0.0.0.0:1337/tree) in your local browser.  The default password is `password`.
-
-If you need to change the port for jupyter, `vagrant halt` to spin the machine down and edit `jupyter_port` and then bring it back online with `vagrant up --provision-with jupyter`.
+If you need to change the port for jupyter, `vagrant halt` to spin the machine down and edit `jupyter_port` and then bring it back online with `vagrant up`.
 
 I will put a few sample notebooks in a subfolder demonstrating any functionality you might have questions about.
 If you are not using vagrant, follow the instructions for local install and copy the notebooks.
