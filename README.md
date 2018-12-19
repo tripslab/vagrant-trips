@@ -39,7 +39,7 @@ for step by step instructions to install and configure
 [diesel](http://www.github.com/mrmechko/diesel-python) and [genesis](http://github.com/mrmechko/genesis).
 I recommend using a virtual environment for python.  I use [pyenv](http://github.com/pyenv/pyenv).
 
-genesis additionally depends on [spacy](http://spacy.io) which is really useful for quickly preparing free text
+[genesis](http://www.github.com/mrmechko/genesis) additionally depends on [spacy](http://spacy.io) which is really useful for quickly preparing free text
 for various types of NLP processing.
 
 ## Points of interest
