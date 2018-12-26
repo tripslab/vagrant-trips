@@ -42,4 +42,6 @@ ln -sv $SOURCE/stanford-postagger/stanford-postagger-2008-06-06/ $SOURCE/stanfor
 ln -sv $SOURCE/stanford-parser/stanford-parser-2007-08-19/ $SOURCE/stanford-parser/stanford-parser
 ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
 
+cd ~/shared/step/src/config && curl -L "http://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" | tar xf 
+cd ~/shared/step/src && git clone http://github.com/mrmechko/SimpleOntology
 cd ~/shared/step/src && git clone http://github.com/wdebeaum/WebParser
