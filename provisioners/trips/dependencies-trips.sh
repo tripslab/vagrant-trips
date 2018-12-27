@@ -6,7 +6,7 @@ sudo apt-get install -y openjdk-8-jdk
 
 
 # sbcl cvs ruby sqlite graphviz
-sudo apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz unzip
+sudo apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz unzip lighttpd
 
 # data dependencies
 TRIPSDEP=/home/vagrant/tripsdep
@@ -22,10 +22,11 @@ fi
 
 echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
 
-cd $TRIPSDEP
-unzip dependencies.zip
+
 
 # symlink things to the right place
+cd $TRIPSDEP
+unzip dependencies.zip
 
 cd tripsDependencies
 
@@ -42,6 +43,10 @@ ln -sv $SOURCE/stanford-postagger/stanford-postagger-2008-06-06/ $SOURCE/stanfor
 ln -sv $SOURCE/stanford-parser/stanford-parser-2007-08-19/ $SOURCE/stanford-parser/stanford-parser
 ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
 
-cd ~/shared/step/src/config && curl -L "http://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" | tar xf 
-cd ~/shared/step/src && git clone http://github.com/mrmechko/SimpleOntology
-cd ~/shared/step/src && git clone http://github.com/wdebeaum/WebParser
+cd ~/shared/step/src/config
+curl -L "https://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" > ruby.tar
+tar xf ruby.tar
+rm ruby.tar
+
+cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/mrmechko/SimpleOntology
+cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/tripslab/WebParser

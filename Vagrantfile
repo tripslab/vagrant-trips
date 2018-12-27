@@ -34,9 +34,11 @@ Vagrant.configure("2") do |config|
   # NOTE: This will enable public access to the opened port
   j_port = params["jupyter_port"] || 1337
   t_port = params["trips_port"] || 6200
+  d_port = params["webparser_port"] || 8081
 
   config.vm.network "forwarded_port", guest: 8888, host: j_port
   config.vm.network "forwarded_port", guest: 6200, host: t_port
+  config.vm.network "forwarded_port", guest: 11235, host: d_port
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access

@@ -1,6 +1,7 @@
 {
 	"jupyter_port": 1337,
 	"trips_port": 6200,
+	"webparser_port": 8081,
 	"install_trips": true,
 	"step_version": "head",
 	"diesel_version": "2.1.0",
