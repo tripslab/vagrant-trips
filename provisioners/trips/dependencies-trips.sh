@@ -49,4 +49,4 @@ tar xf ruby.tar
 rm ruby.tar
 
 cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/mrmechko/SimpleOntology
-cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/tripslab/WebParser
+cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/WebParser pull || git clone https://github.com/tripslab/WebParser
