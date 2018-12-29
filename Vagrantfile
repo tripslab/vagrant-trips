@@ -103,7 +103,8 @@ Vagrant.configure("2") do |config|
 
   # leave provisioners to install trips otherwise
   config.vm.provision "sbcl", type: "shell", path: "provisioners/trips/sbcl.sh", privileged: false, run: "never", args: params["sbcl"] || ""
-  config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
+  config.vm.provision "trips-dependencies", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never", args: "nolink"
+  config.vm.provision "trips-dependencies-link", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
   config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
 
   if params["start_by_default"] == "jupyter"

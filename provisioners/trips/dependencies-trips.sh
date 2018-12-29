@@ -18,35 +18,43 @@ DEPURL="http://github.com/mrmechko/vagrant-trips/releases/download/0.0.1/tripsDe
 
 if [ ! -f $TRIPSDEP/dependencies.zip ]; then
 	curl -L $DEPURL > $TRIPSDEP/dependencies.zip
+	echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
 fi
 
-echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
 
 
 
-# symlink things to the right place
-cd $TRIPSDEP
-unzip dependencies.zip
+link_deps() {
+	# symlink things to the right place
+	cd $TRIPSDEP
+	unzip dependencies.zip
+	
+	cd tripsDependencies
+	
+	SOURCE=`pwd`
+	
+	#cj-parser   mesh      stanford-ner    stanford-postagger
+	#geonames    stanford-corenlp  stanford-parser
+	
+	#ln -s $SOURCE/tripsDependencies/$f $f
+	
+	ln -sv $SOURCE/stanford-ner/stanford-ner-2007-11-05 $SOURCE/stanford-ner/stanford-ner
+	ln -sv $SOURCE/stanford-postagger/stanford-postagger-2008-06-06/ $SOURCE/stanford-postagger/stanford-postagger
+	
+	ln -sv $SOURCE/stanford-parser/stanford-parser-2007-08-19/ $SOURCE/stanford-parser/stanford-parser
+	ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
+}
 
-cd tripsDependencies
-
-SOURCE=`pwd`
-
-#cj-parser   mesh      stanford-ner    stanford-postagger
-#geonames    stanford-corenlp  stanford-parser
-
-#ln -s $SOURCE/tripsDependencies/$f $f
-
-ln -sv $SOURCE/stanford-ner/stanford-ner-2007-11-05 $SOURCE/stanford-ner/stanford-ner
-ln -sv $SOURCE/stanford-postagger/stanford-postagger-2008-06-06/ $SOURCE/stanford-postagger/stanford-postagger
-
-ln -sv $SOURCE/stanford-parser/stanford-parser-2007-08-19/ $SOURCE/stanford-parser/stanford-parser
-ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
+echo "why?!"
 
 cd ~/shared/step/src/config
 curl -L "https://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" > ruby.tar
 tar xf ruby.tar
 rm ruby.tar
 
+echo "why?!"
+
 cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/mrmechko/SimpleOntology
 cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/WebParser pull || git clone https://github.com/tripslab/WebParser
+
+echo "why?!"
