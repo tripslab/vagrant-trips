@@ -6,22 +6,21 @@ sudo apt-get install -y openjdk-8-jdk
 
 
 # sbcl cvs ruby sqlite graphviz
-sudo apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz unzip lighttpd
+sudo apt-get install -y sbcl cvs ruby libdbd-sqlite3-perl graphviz unzip lighttpd xsltproc
+
+
+mkdir -p ~/bin
+cd bin
+curl -L https://cpanmin.us/ -o cpanm
+chmod +x cpanm
+
+cd ~
+sudo ~/bin/cpanm CGI
 
 # data dependencies
 TRIPSDEP=/home/vagrant/tripsdep
 
 mkdir -p $TRIPSDEP
-
-
-DEPURL="http://github.com/mrmechko/vagrant-trips/releases/download/0.0.1/tripsDependencies.zip"
-
-if [ ! -f $TRIPSDEP/dependencies.zip ]; then
-	curl -L $DEPURL > $TRIPSDEP/dependencies.zip
-	echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
-fi
-
-
 
 
 link_deps() {
@@ -45,16 +44,23 @@ link_deps() {
 	ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
 }
 
-echo "why?!"
+
+DEPURL="http://github.com/mrmechko/vagrant-trips/releases/download/0.0.1/tripsDependencies.zip"
+
+if [ ! -f $TRIPSDEP/dependencies.zip ]; then
+	#curl -L $DEPURL > $TRIPSDEP/dependencies.zip
+	cp ~/shared/dependencies.zip $TRIPSDEP/dependencies.zip
+	echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
+	echo "linking"
+	link_deps
+fi
+
+
 
 cd ~/shared/step/src/config
 curl -L "https://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" > ruby.tar
 tar xf ruby.tar
 rm ruby.tar
 
-echo "why?!"
-
 cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/SimpleOntology pull || git clone https://github.com/mrmechko/SimpleOntology
 cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/WebParser pull || git clone https://github.com/tripslab/WebParser
-
-echo "why?!"
