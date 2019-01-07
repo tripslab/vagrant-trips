@@ -146,4 +146,7 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python
 
-
+.DS_STORE
+shared/logs
+dependencies.zip
+*.swp
