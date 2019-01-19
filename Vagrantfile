@@ -107,6 +107,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision "trips-dependencies-link", type: "shell", path: "provisioners/trips/dependencies-trips.sh", privileged: false, run: "never"
   config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
 
+  # run WebParser
+  config.vm.provision "step", type: "shell", run: "never", privileged: false,  inline: '/home/vagrant/shared/step/bin/trips-step -display None -logdir logs &'
+  config.vm.provision "server", type: "shell", run: "never", privileged: false,  inline: 'bash /home/vagrant/shared/run_lighttpd.sh &'
+
   if params["start_by_default"] == "jupyter"
     config.vm.provision "jupyter-default", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
   end

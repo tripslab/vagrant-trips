@@ -48,8 +48,8 @@ link_deps() {
 DEPURL="http://github.com/mrmechko/vagrant-trips/releases/download/0.0.1/tripsDependencies.zip"
 
 if [ ! -f $TRIPSDEP/dependencies.zip ]; then
-	#curl -L $DEPURL > $TRIPSDEP/dependencies.zip
-	cp ~/shared/dependencies.zip $TRIPSDEP/dependencies.zip
+	curl -L $DEPURL > $TRIPSDEP/dependencies.zip
+	#cp ~/shared/dependencies.zip $TRIPSDEP/dependencies.zip
 	echo "export TRIPSDEP=$TRIPSDEP" >> /home/vagrant/.bash_profile
 	echo "linking"
 	link_deps
