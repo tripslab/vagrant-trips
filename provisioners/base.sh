@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ensure shared is in a clean state
+rm -rf /home/vagrant/shared/step
+rm -rf /home/vagrant/shared/flaming-tyrion
+
 # update apt-get
 apt-get update
 
