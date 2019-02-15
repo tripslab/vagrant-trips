@@ -2,6 +2,7 @@ export PATH=/home/vagrant/.pyenv/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+export TRIPSDEP=$HOME/tripsdep
 export tripsParserRemote=trips.ihmc.us/parser
 
 # this path should point to whatever directory you cloned flaming-tyrion to

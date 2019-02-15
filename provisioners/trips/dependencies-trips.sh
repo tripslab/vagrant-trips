@@ -17,9 +17,6 @@ chmod +x cpanm
 cd ~
 sudo ~/bin/cpanm CGI
 
-# data dependencies
-TRIPSDEP=/home/vagrant/tripsdep
-
 mkdir -p $TRIPSDEP
 
 
@@ -27,19 +24,19 @@ link_deps() {
 	# symlink things to the right place
 	cd $TRIPSDEP
 	unzip dependencies.zip
-	
+
 	cd tripsDependencies
-	
+
 	SOURCE=`pwd`
-	
+
 	#cj-parser   mesh      stanford-ner    stanford-postagger
 	#geonames    stanford-corenlp  stanford-parser
-	
+
 	#ln -s $SOURCE/tripsDependencies/$f $f
-	
+
 	ln -sv $SOURCE/stanford-ner/stanford-ner-2007-11-05 $SOURCE/stanford-ner/stanford-ner
 	ln -sv $SOURCE/stanford-postagger/stanford-postagger-2008-06-06/ $SOURCE/stanford-postagger/stanford-postagger
-	
+
 	ln -sv $SOURCE/stanford-parser/stanford-parser-2007-08-19/ $SOURCE/stanford-parser/stanford-parser
 	ln -sv $SOURCE/stanford-corenlp/stanford-corenlp-full-2014-06-16/ $SOURCE/stanford-corenlp/stanford-corenlp
 }
