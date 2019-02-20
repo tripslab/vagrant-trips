@@ -88,7 +88,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
   # install sbcl from binary instead of apt-get
-  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
+  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once", args: params["step_repo"]
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
   # restore from a failed trips installation
