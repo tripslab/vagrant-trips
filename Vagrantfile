@@ -59,6 +59,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "shared", "/home/vagrant/shared"
+  config.ssh.forward_agent = true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -88,7 +89,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
   # install sbcl from binary instead of apt-get
-  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once"
+  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once", args: params["step_repo"]
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
   # restore from a failed trips installation
