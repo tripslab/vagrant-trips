@@ -110,6 +110,7 @@ Vagrant.configure("2") do |config|
 
   # run WebParser
   config.vm.provision "server", type: "shell", run: "never", privileged: false,  inline: '/home/vagrant/shared/run_lighttpd.sh'
+  config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src && make && make install && sleep 10'
 
   if params["start_by_default"] == "jupyter"
     config.vm.provision "jupyter-default", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"

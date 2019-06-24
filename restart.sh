@@ -4,6 +4,10 @@
 LOG_FILES="IM.log LXM.log PARSER.log WEBPARSER.log facilitator.err facilitator.log lisp.log"
 
 rm shared/logs/*; 
-vagrant reload --provision-with=server; 
+vagrant reload --provision-with=recompile
+vagrant up --provision-with=recompile
+
+vagrant up --provision-with=server; 
+
 sleep 30; 
-cd shared/logs && multitail -s 3 $LOG_FILES
+#cd shared/logs && multitail -s 3 $LOG_FILES
