@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "vagrant-trips",
+			"path": "."
+		},
+		{
+			"name": "SkeletonScore",
+			"path": "shared/step/src/SkeletonScore"
+		},
+		{
+			"name": "Parser",
+			"path": "shared/step/src/Parser"
+		},
+		{
+			"path": "shared/logs"
+		},
+		{
+			"path": "shared/step/src/TextTagger"
+		}
+	],
+	"settings": {}
+}

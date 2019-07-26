@@ -8,5 +8,5 @@
 	"genesis_version": "0.4.0",
 	"run_by_default": "jupyter",
 	"memory": "4096",
-	"step_repo": "wdebeaum"
+	"step_repo": "mrmechko"
 }
