@@ -14,7 +14,7 @@ pyenv global 3.5.6
 
 # Install the jupyter notebook for easier exploration
 pip install jupyter
-pip install -e git+https://github.com/mrmechko/tripsmodule.git
+git clone https://github.com/mrmechko/tripsmodule.git && cd tripsmodule && pip install .
 
 jupyter notebook --generate-config
 

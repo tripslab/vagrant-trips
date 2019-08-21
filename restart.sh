@@ -36,8 +36,10 @@ then
 	vagrant reload 
 	if [ -z $CLEAN ];
 	then
+		echo "cleaning"
 		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make && make install"
 	else
+		echo "remaking"
 		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make clean && make && make install"
 	fi
 fi
