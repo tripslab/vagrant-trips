@@ -36,9 +36,9 @@ then
 	vagrant reload 
 	if [ -z $CLEAN ];
 	then
-		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && sudo make && sudo make install"
+		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make && make install"
 	else
-		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && sudo make clean && sudo make && sudo make install"
+		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make clean && make && make install"
 	fi
 fi
 
