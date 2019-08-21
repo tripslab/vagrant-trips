@@ -1,4 +1,5 @@
 {
+	"name": "WSD",
 	"jupyter_port": 1337,
 	"trips_port": 6200,
 	"webparser_port": 8081,

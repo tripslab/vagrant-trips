@@ -31,7 +31,8 @@ echo "flaming-tyrion pulled"
 # if step exists we gonna have issues...
 if [[ ! -d /home/vagrant/shared/step ]];
 then
-  	git clone ${1-http://github.com/wdebeaum/step} /home/vagrant/shared/step;
+  	echo "git clone ${*-http://github.com/wdebeaum/step} /home/vagrant/shared/step;"
+  	git clone ${*-http://github.com/wdebeaum/step} /home/vagrant/shared/step;
 else
 	pushd /home/vagrant/shared/step
 	rm src
