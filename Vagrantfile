@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "trips-configure", type: "shell", path: "provisioners/trips/configure-trips.sh", privileged: false, run: "never"
 
   # run WebParser
-  config.vm.provision "server", type: "shell", run: "never", privileged: false,  inline: '/home/vagrant/shared/run_lighttpd.sh'
+  config.vm.provision "server", type: "shell", run: "never", privileged: true,  inline: '/home/vagrant/shared/run_lighttpd.sh'
   config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src && make && make install && sleep 10 && echo "done"'
   config.vm.provision "recompile_skeleton", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/SkeletonScore && make && make install && sleep 10'
   config.vm.provision "recompile_parser", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/Parser && make clean && make && make install && sleep 10'

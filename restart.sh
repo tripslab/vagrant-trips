@@ -36,16 +36,16 @@ then
 	vagrant reload 
 	if [ -z $CLEAN ];
 	then
-		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make && sudo make install"
+		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && sudo make && sudo make install"
 	else
-		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make clean && make && sudo make install"
+		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && sudo make clean && sudo make && sudo make install"
 	fi
 fi
 
 
 if [ -z $NOSERVER ];
 then
-	vagrant reload && vagrant ssh -c 'sudo /home/vagrant/shared/run_lighttpd.sh'
+	vagrant reload --provision-with=server 
 fi
 
 sleep 30; 
