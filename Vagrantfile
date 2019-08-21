@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", type: "dhcp"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "shared", "/home/vagrant/shared"
+  config.vm.synced_folder "shared", "/home/vagrant/shared", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp'], linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
   config.ssh.forward_agent = true
 
   # Provider-specific configuration so you can fine-tune various
@@ -110,7 +110,9 @@ Vagrant.configure("2") do |config|
 
   # run WebParser
   config.vm.provision "server", type: "shell", run: "never", privileged: false,  inline: '/home/vagrant/shared/run_lighttpd.sh'
-  config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src && make && make install && sleep 10'
+  config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src && make && make install && sleep 10 && echo "done"'
+  config.vm.provision "recompile_skeleton", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/SkeletonScore && make && make install && sleep 10'
+  config.vm.provision "recompile_parser", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/Parser && make clean && make && make install && sleep 10'
 
   if params["start_by_default"] == "jupyter"
     config.vm.provision "jupyter-default", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
