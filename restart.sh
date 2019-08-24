@@ -34,12 +34,13 @@ done
 if [ -z $NOCOMPILE ];
 then
 	vagrant reload 
+	vagrant ssh -c "echo \$TRIPS_SKEL_DBG"
 	if [ -z $CLEAN ];
 	then
-		echo "cleaning"
+		echo "remaking"
 		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make && make install"
 	else
-		echo "remaking"
+		echo "cleaning"
 		vagrant ssh -c "cd /home/vagrant/shared/step/src/$compile && make clean && make && make install"
 	fi
 fi
