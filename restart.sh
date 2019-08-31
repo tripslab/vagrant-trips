@@ -21,8 +21,8 @@ case $i in
     NOSERVER=YES
     shift # past argument with no value
     ;;
-    --log)
-    LOG=YES
+    --silent)
+    SILENT=YES
     shift # past argument with no value
     ;;
     *)
@@ -55,7 +55,7 @@ sleep 30;
 
 command -v terminal-notifier && terminal-notifier -message "Compilation complete" -title "Trips Compiled"
 
-if [ -n $LOG ];
+if [ -z $SILENT ];
 then
 	pushd shared/logs && multitail -s 3 $LOG_FILES && popd
 fi

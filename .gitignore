@@ -148,5 +148,6 @@ pip-selfcheck.json
 
 .DS_STORE
 shared/logs
+shared/logs-previous
 dependencies.zip
 *.swp
