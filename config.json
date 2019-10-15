@@ -3,10 +3,10 @@
 	"trips_port": 6200,
 	"webparser_port": 8081,
 	"install_trips": true,
-	"step_version": "head",
+	"gloss_version": "head",
 	"diesel_version": "2.1.0",
 	"genesis_version": "0.4.0",
 	"run_by_default": "jupyter",
 	"memory": "4096",
-	"step_repo": "-b rik https://github.com/mrmechko/step"
+	"gloss_repo": "https://github.com/mrmechko/gloss"
 }

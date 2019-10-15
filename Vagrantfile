@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "base", type: "shell", path: "provisioners/base.sh"
   config.vm.provision "python", type: "shell", path: "provisioners/python.sh", privileged: false
   # install sbcl from binary instead of apt-get
-  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once", args: params["step_repo"]
+  config.vm.provision "diesel", type: "shell", path: "provisioners/diesel.sh", privileged: false, run: "once", args: params["gloss_repo"]
   config.vm.provision "jupyter", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "never"
 
   # restore from a failed trips installation
@@ -110,9 +110,9 @@ Vagrant.configure("2") do |config|
 
   # run WebParser
   config.vm.provision "server", type: "shell", run: "never", privileged: false,  inline: '/home/vagrant/shared/run_lighttpd.sh'
-  config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src && make && make install && sleep 10 && echo "done"'
-  config.vm.provision "recompile_skeleton", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/SkeletonScore && make && make install && sleep 10'
-  config.vm.provision "recompile_parser", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/step/src/Parser && make clean && make && make install && sleep 10'
+  config.vm.provision "recompile", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/gloss/src && make && make install && sleep 10 && echo "done"'
+  config.vm.provision "recompile_skeleton", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/gloss/src/SkeletonScore && make && make install && sleep 10'
+  config.vm.provision "recompile_parser", type: "shell", run: "never", privileged: false,  inline: 'cd /home/vagrant/shared/gloss/src/Parser && make clean && make && make install && sleep 10'
 
   if params["start_by_default"] == "jupyter"
     config.vm.provision "jupyter-default", type: "shell", path: "provisioners/jupyter.sh", privileged: false, run: "always"
