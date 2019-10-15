@@ -11,4 +11,6 @@ export tripsXMLPath=/home/vagrant/shared/flaming-tyrion
 export TRIPS_BASE_PATH=/home/vagrant/shared/step
 export SPACY_MODEL=en # change this to the name of the model you wish to use. larger models require more memory
 
+export SYSTEM_NAME=gloss
+
 . $HOME/.bashrc

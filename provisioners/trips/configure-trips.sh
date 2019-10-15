@@ -12,7 +12,7 @@ LISP="--with-lisp=sbcl"
 WORDNET="--with-wordnet=/home/vagrant/nltk_data/corpora/wordnet/"
 
 
-cd /home/vagrant/shared/step/src
+cd /home/vagrant/shared/$SYSTEM_NAME/src
 
 rm -rf config/scala
 
@@ -31,4 +31,4 @@ sleep 5
 
 make && make install
 
-cd ~/shared/step/src/WebParser && make && make install
+#cd ~/shared/$SYSTEM_NAME/src/WebParser && make && make install

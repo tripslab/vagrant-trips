@@ -28,12 +28,12 @@ echo "spacy installed"
 
 echo "flaming-tyrion pulled"
 
-# if step exists we gonna have issues...
-if [[ ! -d /home/vagrant/shared/step ]];
+# if $SYSTEM_NAME exists we gonna have issues...
+if [[ ! -d /home/vagrant/shared/$SYSTEM_NAME ]];
 then
-  	git clone ${1-http://github.com/wdebeaum/step} /home/vagrant/shared/step;
+  	git clone ${1-http://github.com/wdebeaum/$SYSTEM_NAME} /home/vagrant/shared/$SYSTEM_NAME;
 else
-	pushd /home/vagrant/shared/step
+	pushd /home/vagrant/shared/$SYSTEM_NAME
 	rm src
 	mv TRIPS src
 	git pull
@@ -42,4 +42,4 @@ else
 	echo "TRIPS was updated.  Make sure to recompile before you use it again"
 fi
 
-echo "step pulled"
+echo "$SYSTEM_NAME pulled"

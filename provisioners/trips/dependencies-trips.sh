@@ -54,10 +54,10 @@ fi
 
 
 
-cd ~/shared/step/src/config
+cd ~/shared/$SYSTEM_NAME/src/config
 curl -L "https://github.com/tripslab/vagrant-trips/releases/download/0.0.2/ruby.tar" > ruby.tar
 tar xf ruby.tar
 rm ruby.tar
 
-cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/jsontrips pull || git clone https://github.com/mrmechko/jsontrips
-cd ~/shared/step/src && git -C /home/vagrant/shared/step/src/WebParser pull || git clone https://github.com/tripslab/WebParser
+cd ~/shared/$SYSTEM_NAME/src && git -C /home/vagrant/shared/$SYSTEM_NAME/src/jsontrips pull || git clone https://github.com/mrmechko/jsontrips
+#cd ~/shared/$SYSTEM_NAME/src && git -C /home/vagrant/shared/$SYSTEM_NAME/src/WebParser pull || git clone https://github.com/tripslab/WebParser

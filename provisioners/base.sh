@@ -2,7 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 # ensure shared is in a clean state
-rm -rf /home/vagrant/shared/step
+rm -rf /home/vagrant/shared/$SYSTEM_NAME
 rm -rf /home/vagrant/shared/flaming-tyrion
 
 # update apt-get
