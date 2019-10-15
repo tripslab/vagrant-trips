@@ -8,7 +8,7 @@ cp ~/shared/dotfiles/bash_profile ~/.bash_profile
 source .bash_profile
 
 # ensure shared is in a clean state
-rm -rf /home/vagrant/shared/$SYSTEM_NAME
+#rm -rf /home/vagrant/shared/$SYSTEM_NAME
 rm -rf /home/vagrant/shared/flaming-tyrion
 
 
