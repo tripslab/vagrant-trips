@@ -8,5 +8,5 @@
 	"genesis_version": "0.4.0",
 	"run_by_default": "jupyter",
 	"memory": "4096",
-	"gloss_repo": "https://github.com/mrmechko/gloss"
+	"gloss_repo": "/Users/rik/Code/trips/gloss"
 }
